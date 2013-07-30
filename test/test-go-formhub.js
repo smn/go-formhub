@@ -22,7 +22,8 @@ describe('FormHub', function () {
 
   var tester;
   var fixtures = [
-    'test/fixtures/good-eats-formhub.json'
+    'test/fixtures/good-eats-formhub.json',
+    'test/fixtures/geolocation.json'
   ];
 
   beforeEach(function () {
@@ -135,22 +136,37 @@ describe('FormHub', function () {
     }).then(done, done);
   });
 
-  it('should gracefully degrate the `geopoint` type', function(done) {
+  it('should handle the `geopoint` type by using Google Maps', function(done) {
     var p = tester.check_state({
       user: {
         current_state: 'location_photo'
       },
       content: '1',
       next_state: 'gps',
-      response: '^FormHub wants a GeoIP but this is not supported over USSD.[^]' +
-                '1. Continue$'
+      response: '^Location \\(So you can find it again\\)$'
+    }).then(done, done);
+  });
+
+  it('should come back with a list of matches', function(done) {
+    var p = tester.check_state({
+      user: {
+        current_state: 'gps'
+      },
+      content: '1600 Amphitheatre Parkway',
+      next_state: 'matches_for_gps',
+      response: '^Please select a match[^]' +
+                '1. 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA[^]' +
+                '2. None of the above$'
     }).then(done, done);
   });
 
   it('should gracefully degrate the `imei` type', function(done) {
     var p = tester.check_state({
       user: {
-        current_state: 'gps'
+        current_state: 'matches_for_gps',
+        answers: {
+          'gps': '1600 Amphitheatre Parkway'
+        }
       },
       content: '1',
       next_state: 'imei',
