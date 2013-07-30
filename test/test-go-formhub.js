@@ -155,7 +155,20 @@ describe('FormHub', function () {
       content: '1',
       next_state: 'imei',
       response: '^FormHub wants to capture the IMEI but this is not supported over USSD.[^]' +
-                '1. Continue$'
+                '1. Submit MSISDN instead[^]' +
+                '2. Leave blank$'
+    }).then(done, done);
+  });
+
+  it('should go to the end state when done', function(done) {
+    var p = tester.check_state({
+      user: {
+        current_state: 'submit_date',
+      },
+      content: '1',
+      next_state: '__end_state__',
+      response: 'The data has been submitted succesfully',
+      continue_session: false
     }).then(done, done);
   });
 
