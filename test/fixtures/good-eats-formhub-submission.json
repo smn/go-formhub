@@ -1,0 +1,7 @@
+{
+  "url": "https://formhub.org/mberg/forms/good_eats/form.xml",
+  "method": "POST",
+  "content_type": "application/xml",
+  "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<good_eats id=\"good_eats\">\n  <submit_data/>\n  <food_type/>\n  <description/>\n  <amount/>\n  <rating/>\n  <comments/>\n  <risk_factor/>\n  <food_photo/>\n  <location_name/>\n  <location_photo/>\n  <gps/>\n  <imei/>\n  <submit_date>1</submit_date>\n</good_eats>",
+  "body": {}
+}
