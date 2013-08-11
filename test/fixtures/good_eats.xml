@@ -1,0 +1,152 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>good_eats</h:title>
+    <model>
+      <instance>
+        <good_eats id="good_eats"><formhub><uuid/></formhub>
+          <submit_data/>
+          <food_type/>
+          <description/>
+          <amount/>
+          <rating/>
+          <comments/>
+          <risk_factor/>
+          <food_photo/>
+          <location_name/>
+          <location_photo/>
+          <gps/>
+          <imei/>
+          <submit_date/>
+        </good_eats>
+      </instance>
+      <bind nodeset="/good_eats/formhub/uuid" type="string" calculate="'5ff518d94d1f4876b482f1947c080c8d'" />
+      <bind jr:preload="date" jr:preloadParams="today" nodeset="/good_eats/submit_data" type="date"/>
+      <bind nodeset="/good_eats/food_type" type="select1"/>
+      <bind nodeset="/good_eats/description" type="string"/>
+      <bind nodeset="/good_eats/amount" type="decimal"/>
+      <bind nodeset="/good_eats/rating" type="select1"/>
+      <bind nodeset="/good_eats/comments" type="string"/>
+      <bind nodeset="/good_eats/risk_factor" type="select1"/>
+      <bind nodeset="/good_eats/location_name" type="string"/>
+      <bind nodeset="/good_eats/gps" type="geopoint"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/good_eats/imei" type="string"/>
+      <bind jr:preload="date" jr:preloadParams="today" nodeset="/good_eats/submit_date" type="date"/>
+    </model>
+  </h:head>
+  <h:body>
+    <select1 ref="/good_eats/food_type">
+      <label>Type of Eat</label>
+      <item>
+        <label>Morning Food</label>
+        <value>morning_food</value>
+      </item>
+      <item>
+        <label>Lunch Time</label>
+        <value>lunch</value>
+      </item>
+      <item>
+        <label>Dinner</label>
+        <value>dinner</value>
+      </item>
+      <item>
+        <label>Libations</label>
+        <value>libations</value>
+      </item>
+      <item>
+        <label>Caffeination</label>
+        <value>caffeination</value>
+      </item>
+      <item>
+        <label>Deserts</label>
+        <value>deserts</value>
+      </item>
+      <item>
+        <label>Street Meat</label>
+        <value>street_meat</value>
+      </item>
+      <item>
+        <label>Street Sweets</label>
+        <value>streat_sweets</value>
+      </item>
+      <item>
+        <label>Savory Snacks</label>
+        <value>savory_snacks</value>
+      </item>
+      <item>
+        <label>Baked Goods</label>
+        <value>baked_goods</value>
+      </item>
+      <item>
+        <label>Best consumed when drunk</label>
+        <value>drunk_food</value>
+      </item>
+      <item>
+        <label>Not Sure What I Just Ate</label>
+        <value>not_sure</value>
+      </item>
+      <item>
+        <label>Other</label>
+        <value>other</value>
+      </item>
+    </select1>
+    <input ref="/good_eats/description">
+      <label>Description</label>
+    </input>
+    <input ref="/good_eats/amount">
+      <label>Amount</label>
+      <hint>In local currency</hint>
+    </input>
+    <select1 ref="/good_eats/rating">
+      <label>Rating</label>
+      <item>
+        <label>Epic Eat</label>
+        <value>epic_eat</value>
+      </item>
+      <item>
+        <label>Delectible</label>
+        <value>delectible</value>
+      </item>
+      <item>
+        <label>Nothing Special</label>
+        <value>nothing_special</value>
+      </item>
+      <item>
+        <label>What was I thinking</label>
+        <value>bad</value>
+      </item>
+    </select1>
+    <input ref="/good_eats/comments">
+      <label>Comments</label>
+    </input>
+    <select1 ref="/good_eats/risk_factor">
+      <label>Risk Factor</label>
+      <item>
+        <label>Low Risk</label>
+        <value>low_risk</value>
+      </item>
+      <item>
+        <label>Medium Risk (Questionable)</label>
+        <value>medium_risk</value>
+      </item>
+      <item>
+        <label>High Risk (Hope it was worth it)</label>
+        <value>high_risk</value>
+      </item>
+    </select1>
+    <upload mediatype="image/*" ref="/good_eats/food_photo">
+      <label>Food Pic</label>
+      <hint>What you are about to eat</hint>
+    </upload>
+    <input ref="/good_eats/location_name">
+      <label>Location Name</label>
+    </input>
+    <upload mediatype="image/*" ref="/good_eats/location_photo">
+      <label>Served At</label>
+      <hint>Where the food came from</hint>
+    </upload>
+    <input ref="/good_eats/gps">
+      <label>Location</label>
+      <hint>So you can find it again</hint>
+    </input>
+  </h:body>
+</h:html>

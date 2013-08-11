@@ -23,6 +23,7 @@ describe('FormHub', function () {
   var tester;
   var fixtures = [
     'test/fixtures/good-eats-formhub.json',
+    'test/fixtures/good-eats-formhub-submission.json',
     'test/fixtures/geolocation.json'
   ];
 
