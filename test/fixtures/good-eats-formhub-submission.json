@@ -2,6 +2,6 @@
   "url": "https://formhub.org/mberg/forms/good_eats/form.xml",
   "method": "POST",
   "content_type": "application/xml",
-  "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<good_eats id=\"good_eats\"><submit_data/><food_type/><description/><amount/><rating/><comments/><risk_factor/><food_photo/><location_name/><location_photo/><gps/><imei/><submit_date>1</submit_date></good_eats>\n",
+  "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<good_eats id=\"good_eats\"><submit_data/><food_type/><description/><amount/><rating/><comments/><risk_factor/><food_photo/><location_name/><location_photo/><gps/><imei/><submit_date>2013-08-11T06:00:00.000Z</submit_date></good_eats>\n",
   "body": {}
 }

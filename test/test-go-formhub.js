@@ -27,6 +27,10 @@ describe('FormHub', function () {
     'test/fixtures/geolocation.json'
   ];
 
+  var mocked_get_date = function () {
+    return new Date(2013, 7, 11, 8, 0, 0);
+  };
+
   beforeEach(function () {
     tester = new vumigo.test_utils.ImTester(app.api, {
       custom_setup: function (api) {
@@ -38,6 +42,10 @@ describe('FormHub', function () {
         fixtures.forEach(function (f) {
           api.load_http_fixture(f);
         });
+
+        // mock methods for testing
+        var state_creator = tester.api.im.state_creator;
+        state_creator.get_date = mocked_get_date;
       },
       async: true
     });
@@ -74,6 +82,11 @@ describe('FormHub', function () {
       next_state: 'food_type',
       response: '^Type of Eat[^]' +
                 '1. Morning Food'
+    }).then(function() {
+      var im = app.api.im;
+      assert.equal(
+        im.get_user_answer('submit_data'),
+        mocked_get_date().toISOString());
     }).then(done, done);
   });
 
@@ -174,6 +187,34 @@ describe('FormHub', function () {
       response: '^FormHub wants to capture the IMEI but this is not supported over USSD.[^]' +
                 '1. Submit MSISDN instead[^]' +
                 '2. Leave blank$'
+    }).then(done, done);
+  });
+
+  it('should capture the user\'s MSISDN if asked to do so', function(done) {
+    var p = tester.check_state({
+      user: {
+        current_state: 'imei',
+      },
+      content: '1',
+      next_state: 'submit_date',
+      response: '^The date for today will be captured as'
+    }).then(function() {
+      var im = app.api.im;
+      assert.equal(im.get_user_answer('imei'), '1234567');
+    }).then(done, done);
+  });
+
+  it('should not capture the user\'s MSISDN if asked not to do so', function(done) {
+    var p = tester.check_state({
+      user: {
+        current_state: 'imei',
+      },
+      content: '2',
+      next_state: 'submit_date',
+      response: '^The date for today will be captured as'
+    }).then(function() {
+      var im = app.api.im;
+      assert.equal(im.get_user_answer('imei'), null);
     }).then(done, done);
   });
 
