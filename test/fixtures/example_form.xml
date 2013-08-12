@@ -1,0 +1,36 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>tutorial</h:title>
+    <model>
+      <instance>
+        <tutorial id="tutorial"><formhub><uuid/></formhub>
+          <name/>
+          <age/>
+          <picture/>
+          <gps/>
+        </tutorial>
+      </instance>
+      <bind nodeset="/tutorial/formhub/uuid" type="string" calculate="'65ad45b67b7745559f89efd4137fd8ef'" />
+      <bind nodeset="/tutorial/name" type="string"/>
+      <bind nodeset="/tutorial/age" type="int"/>
+      <bind nodeset="/tutorial/picture" type="binary"/>
+      <bind nodeset="/tutorial/gps" type="geopoint"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/tutorial/name">
+      <label>Where?</label>
+    </input>
+    <input ref="/tutorial/age">
+      <label>How many People Present?</label>
+    </input>
+    <upload mediatype="image/*" ref="/tutorial/picture">
+      <label>Photo?</label>
+    </upload>
+    <input ref="/tutorial/gps">
+      <label>your GPS coordinates.</label>
+      <hint>GPS coordinates can only be collected when outside.</hint>
+    </input>
+  </h:body>
+</h:html>
+
